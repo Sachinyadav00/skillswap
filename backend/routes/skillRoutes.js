@@ -1,10 +1,16 @@
-const express = require('express');
-const authMiddleware = require('../middlewares/authMiddleware');
-const { createSkill } = require('../controllers/skill controllers/createSkillController');
-const getAllSkills = require('../controllers/skill controllers/getAllSkills');
-const getSkillById = require('../controllers/skill controllers/getSkillById');
-const updateSkill = require('../controllers/skill controllers/updateSkill');
-const deleteSkill = require('../controllers/skill controllers/deleteSkill');
+const express = require("express");
+const authMiddleware = require("../middlewares/authMiddleware");
+const {
+  createSkill,
+} = require("../controllers/skill controllers/createSkillController");
+const getAllSkills = require("../controllers/skill controllers/getAllSkills");
+const getSkillById = require("../controllers/skill controllers/getSkillById");
+const updateSkill = require("../controllers/skill controllers/updateSkill");
+const deleteSkill = require("../controllers/skill controllers/deleteSkill");
+const saveSkill = require("../controllers/skill controllers/savedSkill/savedskill");
+const getSavedSkill = require("../controllers/skill controllers/savedSkill/getSavedSkill");
+const unSaveSkill = require("../controllers/skill controllers/savedSkill/unSave");
+const filterSkills = require("../controllers/skill controllers/filterSkills");
 const router = express.Router();
 
 // router.get("/me", authMiddleware, (req,res)=>{
@@ -13,9 +19,16 @@ const router = express.Router();
 
 router.post("/create", authMiddleware, createSkill);
 router.get("/me", authMiddleware, getAllSkills);
-router.get("/:id",  getSkillById);
-router.put('/:id', authMiddleware, updateSkill);
-router.delete('/:id', authMiddleware, deleteSkill); // Same as above
+router.put("/:id", authMiddleware, updateSkill);
+router.delete("/:id", authMiddleware, deleteSkill); // Same as above
 
+//filter skills
+router.get("/b1/filter", filterSkills);
+
+// saved skill routes
+router.delete("/b1/unSave/", authMiddleware, unSaveSkill);
+router.get("/saved", authMiddleware, getSavedSkill);
+router.get("/:id", getSkillById);
+router.post("/saved", authMiddleware, saveSkill);
 
 module.exports = router;
