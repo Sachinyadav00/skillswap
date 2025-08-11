@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+    background-color: hsl(226, 83%, 7%);
+}
+
+
+@layer components {
+    .badge-blue {
+        @apply bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .badge-green {
+        @apply bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .badge-purple {
+        @apply bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .btn-primary {
+        @apply flex items-center justify-center gap-2 py-2.5 text-sm font-semibold rounded-lg bg-gradient-to-r from-blue-500 to-pink-500 text-white;
+    }
+
+    .btn-outline-green {
+        @apply flex items-center justify-center gap-1 py-2 text-sm font-medium rounded-lg border border-green-500 text-green-600;
+    }
+
+    .btn-outline-blue {
+        @apply flex items-center justify-center gap-1 py-2 text-sm font-medium rounded-lg border border-blue-500 text-blue-600;
+    }
+}

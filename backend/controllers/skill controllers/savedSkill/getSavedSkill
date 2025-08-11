@@ -1,0 +1,25 @@
+const SavedSkill = require("../../../models/savedSkill.model");
+
+const getSavedSkill = async (req, res) => {
+  const userId = req.user._id;
+
+  try {
+    const savedSkills = await SavedSkill.find({ user: req.user._id }).populate(
+      "skill"
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Saved Skill Fetched Successfully",
+      savedSkills,
+    });
+  } catch (error) {
+    console.log("Saved skill fetch error : ", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+module.exports = getSavedSkill;
